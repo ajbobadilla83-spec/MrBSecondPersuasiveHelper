@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Persuasive Writing Helper – Numeracy in Life</title>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 20px;
+    }
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 16px;
+      border-radius: 8px;
+    }
+    .card {
+      border: 1px solid #e5e7eb;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    .two {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .left {
+      width: 40%;
+      background: #fff7ed;
+      padding: 8px;
+      border-left: 6px solid #f97316;
+      border-radius: 6px;
+      min-width: 260px;
+    }
+    .right {
+      flex: 1;
+      min-width: 300px;
+    }
+    label {
+      display: block;
+      font-weight: 700;
+      margin-top: 8px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 60px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 2px solid #e5e7eb;
+      resize: vertical;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    /* Colour coding: keep consistent across all paragraphs including conclusion */
+    textarea.s1 { background: #FFF9C4; border-color: #FDD835; }
+    textarea.s2 { background: #E6F4EA; border-color: #34D399; }
+    textarea.s3.p1 { background: #FEE2E2; border-color: #EF4444; }
+    textarea.s3.p2 { background: #E0F2FE; border-color: #60A5FA; }
+    textarea.s3.p3 { background: #EDE9FE; border-color: #7C3AED; }
+    textarea.s3.p4 { background: #FCE7F3; border-color: #EC4899; }
+    textarea.s3.p5 { background: #FFF7ED; border-color: #F97316; }
+
+    .btns {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .fb {
+      background: #f8fafc;
+      padding: 8px;
+      margin-top: 8px;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+      font-size: 0.9em;
+    }
+    .helper {
+      font-size: 0.9em;
+      color: #374151;
+      margin: 4px 0 10px 0;
+    }
+    .hagll {
+      font-style: italic;
+      margin: 4px 0;
+      /* doubled size for easier reading */
+      font-size: 1.6em;
+      line-height: 1.5;
+    }
+    button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9em;
+    }
+    button.check {
+      background: #3b82f6;
+      color: #ffffff;
+    }
+    button.read {
+      background: #a855f7;
+      color: #ffffff;
+    }
+    button.copy {
+      background: #22c55e;
+      color: #ffffff;
+    }
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Prompt box at the top */
+    .prompt-container {
+      max-width: 1000px;
+      margin: 20px auto 30px auto;
+      padding: 16px;
+      border: 2px solid #000;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+    .prompt-title {
+      text-align: center;
+      color: #000;
+      margin-bottom: 10px;
+      font-size: 1.4em;
+    }
+    .prompt-position {
+      text-align: center;
+      color: #dc2626;
+      font-size: 1.1em;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    .argument-point {
+      background: #f3f4f6;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      border-left: 4px solid #f97316;
+      font-size: 0.95em;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <!-- TOP PROMPT: NUMERACY THEME -->
+    <div class="prompt-container">
+      <h1 class="prompt-title">Persuasive Writing Challenge: Being Numerate in Everyday Life</h1>
+
+      <p style="margin-bottom: 10px;">
+        <strong>Scenario:</strong> Imagine you are out with friends at a café, at the shops with your family,
+        or watching your favourite sport. Bills arrive, discounts flash on signs, statistics appear on the
+        screen and people start guessing. Some feel calm and confident with the numbers. Others feel stressed,
+        confused and worried they are getting it wrong.
+      </p>
+
+      <p class="prompt-position">
+        Your Position: <strong>It is important to be numerate in life.</strong>
+      </p>
+
+      <div style="display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px; text-align: center;">
+          <!-- Update this filename if your image is different -->
+          <img
+            src="promt-being-good-at-math.jpg"
+            alt="People confidently and nervously checking a bill with calculations"
+            style="max-width: 100%; border-radius: 8px; border: 1px solid #ccc;"
+          />
+        </div>
+
+        <div style="flex: 1; min-width: 250px;">
+          <div class="argument-point">
+            <strong>Argument 1: Confidence in Front of Others</strong>
+            <p style="font-size: 0.9em; margin: 5px 0 0 0;">
+              When you are comfortable with numbers, you feel capable and proud. You can help friends
+              and family with quick calculations and you do not panic when bills or scores appear.
+            </p>
+          </div>
+
+          <div class="argument-point">
+            <strong>Argument 2: Smart Choices at the Shops</strong>
+            <p style="font-size: 0.9em; margin: 5px 0 0 0;">
+              Numeracy helps you compare prices, understand discounts and percentages, and check whether a
+              “special offer” really saves money or is just clever advertising.
+            </p>
+          </div>
+
+          <div class="argument-point">
+            <strong>Argument 3: Understanding Sport and Everyday Information</strong>
+            <p style="font-size: 0.9em; margin: 5px 0 0 0;">
+              Scores, ladders, averages and statistics are all based on numbers. Being numerate means you can
+              follow what is happening in sport, games, news reports and graphs.
+            </p>
+          </div>
+
+          <div class="argument-point">
+            <strong>Argument 4: Control of Your Money</strong>
+            <p style="font-size: 0.9em; margin: 5px 0 0 0;">
+              If you can calculate totals and change, you can check receipts, know how much you should get
+              back and avoid being overcharged. Numeracy keeps you in control of your own money.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center; margin-top: 25px;">
+        <strong>SCROLL DOWN</strong> to use the Persuasive Writing Helper to structure your essay based on this position.
+      </p>
+    </div>
+
+    <div id="root"></div>
+  </div>
+
+  <script type="text/babel">
+    // Simple grammar + structure checks
+    function grammarChecks(sentence, idx, paraIndex) {
+      const feedback = [];
+      const trimmed = sentence.trim();
+
+      if (!trimmed) {
+        feedback.push("⚠️ Sentence missing.");
+        return feedback;
+      }
+
+      // Capital letter
+      if (trimmed[0] !== trimmed[0].toUpperCase()) {
+        feedback.push("⚠️ Sentence should start with a capital letter.");
+      } else {
+        feedback.push("✅ Starts with a capital letter.");
+      }
+
+      // End punctuation
+      if (!/[.?!]$/.test(trimmed)) {
+        feedback.push("⚠️ Sentence should end with a full stop, question mark, or exclamation mark.");
+      } else {
+        feedback.push("✅ Ends with correct punctuation.");
+      }
+
+      // Basic length
+      if (trimmed.split(" ").length < 6) {
+        feedback.push("⚠️ Try to expand your sentence with more detail.");
+      }
+
+      // Paragraph 1, Sentence 1 -> make sure they clearly state position
+      if (paraIndex === 0 && idx === 0) {
+        if (!/\b(important|essential|vital|numerate|numeracy)\b/i.test(trimmed)) {
+          feedback.push("⚠️ Clearly state that being numerate is important in life.");
+        }
+      }
+
+      // Argument paragraphs: sentence 2 should usually use "because"
+      if ((paraIndex === 1 || paraIndex === 2 || paraIndex === 3) && idx === 1) {
+        if (!/\bbecause\b/i.test(trimmed)) {
+          feedback.push("⚠️ Include 'because' to explain your reason.");
+        }
+      }
+
+      // Argument paragraphs: sentence 3 strong persuasive sentence
+      if ((paraIndex === 1 || paraIndex === 2 || paraIndex === 3) && idx === 2) {
+        if (!/([?!]|we|us|our|together|example|study|experts|confident|money|numbers)/i.test(trimmed)) {
+          feedback.push("⚠️ Sentence 3 should be a strong finisher: try a rhetorical question, emotive language, or evidence.");
+        }
+      }
+
+      // Conclusion hints
+      if (paraIndex === 4) {
+        if (idx === 0 && !/\b(In conclusion|For these reasons|This is why)\b/i.test(trimmed)) {
+          feedback.push("⚠️ Start with 'In conclusion', 'For these reasons', or 'This is why'.");
+        }
+        if (idx === 2 && !/\b(act now|together|let's|let us|make the right choice|must)\b/i.test(trimmed)) {
+          feedback.push("⚠️ Add a clear call to action (e.g. We must act now, Together we can…).");
+        }
+      }
+
+      return feedback;
+    }
+
+    // Helper for Sentence 3 in Paragraphs 2 & 3
+    const argumentS3Helpers = {
+      type: 'group',
+      content: [
+        {
+          title: "Rhetorical Question Examples",
+          text: "Who wouldn’t want to feel confident with numbers? Don’t we all want to make smart money choices? Isn’t it important to understand what statistics really mean?"
+        },
+        {
+          title: "Emotive Language",
+          text: "confused, embarrassed, overwhelmed, anxious, confident, proud, secure, independent"
+        },
+        {
+          title: "Hyperboles/Exaggeration",
+          text: "a mountain of bills, drowning in numbers, completely lost, a life-changing skill, the difference between success and disaster"
+        },
+        {
+          title: "Inclusive Language Samples",
+          text: "we, us, together, our, let’s, we must, our future depends on this"
+        }
+      ]
+    };
+
+    // Evidence-based helper for Paragraph 4 (Sentence 3) + Conclusion (Sentence 2)
+    const s3EvidenceAndTechniquesHelper = {
+      type: 'group',
+      content: [
+        {
+          title: "Show Evidence",
+          text: "For example, According to, A recent study found, In a survey, Experts say, Statistics show"
+        },
+        {
+          title: "Emotive Language",
+          text: "confused, embarrassed, overwhelmed, anxious, confident, proud, secure, independent"
+        },
+        {
+          title: "Hyperboles/Exaggeration",
+          text: "a mountain of bills, drowning in numbers, completely lost, a life-changing skill, the difference between success and disaster"
+        },
+        {
+          title: "Inclusive Language Samples",
+          text: "we, us, together, our, let’s, we must, our future depends on this"
+        }
+      ]
+    };
+
+    // NOTE: hagll examples are GENERIC – not numeracy-themed – so students can't just copy them.
+    const paragraphData = [
+      {
+        title: "Paragraph 1 — Statement of Position",
+        hagll: [
+          "This issue is extremely important in our lives today because it influences many of our everyday decisions.",
+          "You must absolutely recognise that making thoughtful choices about this matter can change people's futures.",
+          "Who would choose to ignore such an important issue when we have the power to do something about it?"
+        ],
+        prompts: [
+          "Sentence 1: Where, What (State your stand/opinion about being numerate)",
+          "Sentence 2: You must ________ ______ that… (explain your opinion on sentence 1 and be convincing)",
+          "Sentence 3: Reader engagement sentence (e.g. rhetorical question, inclusive language)"
+        ],
+        helpers: [
+          "Subordinating Conjunctions (use to expand your sentence): because, so, however, although, while",
+          {
+            type: 'group',
+            content: [
+              {
+                title: "High Modality Words",
+                text: "certainly, undoubtedly, definitely, absolutely, undeniably, must, should, cannot"
+              },
+              {
+                title: "Verbs of Agreement",
+                text: "agree, believe, consider, accept, recognise"
+              }
+            ]
+          },
+          {
+            type: 'group',
+            content: [
+              {
+                title: "Rhetorical Question Examples",
+                text: "Who wouldn’t want to feel confident with numbers? Don’t we all want to make smart money choices? Isn’t it time we took numeracy seriously?"
+              },
+              {
+                title: "Emotive/Inclusive Language",
+                text: "confused, embarrassed, overwhelmed, confident, proud; we, us, together, our"
+              },
+              {
+                title: "Hyperboles/Exaggeration",
+                text: "drowning in bills, completely lost, a life-changing skill, the difference between success and disaster"
+              },
+              {
+                title: "Simple Transition",
+                text: "Read on to discover why and you will understand..."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        title: "Paragraph 2 — Argument 1 (Confidence in Front of Others)",
+        hagll: [
+          "Firstly, you must understand that this issue can strongly affect how people feel in their everyday lives.",
+          "This is critical because when people are supported in this area, they feel more confident and in control.",
+          "Is it fair to let anyone feel worried or left out just because we chose to ignore this problem?"
+        ],
+        prompts: [
+          "Firstly, you must understand/realise/recognise/appreciate that… (link to confidence around numbers)",
+          "This is __________ because… (explain why this matters)",
+          "Rhetorical question or other persuasive technique"
+        ],
+        helpers: [
+          null,
+          "Word bank: important, significant, critical, fundamental, essential, vital",
+          argumentS3Helpers
+        ]
+      },
+      {
+        title: "Paragraph 3 — Argument 2 (Smart Shopping & Money Control)",
+        hagll: [
+          "Secondly, you must realise that this issue can make a huge difference to the choices people make with their money.",
+          "This is essential because understanding information carefully helps people avoid mistakes and unfair deals.",
+          "It is empowering to know you are not being taken advantage of because you can think carefully before you decide."
+        ],
+        prompts: [
+          "Secondly, you must understand/realise/recognise/appreciate that… (link to shopping / money decisions)",
+          "This is __________ because… (explain the impact)",
+          "Emotive / inclusive / exaggeration (or other technique)"
+        ],
+        helpers: [
+          null,
+          "Word bank: important, significant, critical, fundamental, essential, vital",
+          argumentS3Helpers
+        ]
+      },
+      {
+        title: "Paragraph 4 — Argument 3 (Sport, Games and Everyday Information)",
+        hagll: [
+          "Thirdly, you must appreciate that this issue helps people make sense of information they see every day.",
+          "This is important because scores, results and statistics are used in many areas, from sport and games to news reports.",
+          "For example, many people rely on data to compare performance, spot patterns and decide which options will work best."
+        ],
+        prompts: [
+          "Thirdly, you must understand/realise/recognise/appreciate that… (link to sport / games / news)",
+          "This is __________ because… (explain why it matters)",
+          "Show evidence or another persuasive technique"
+        ],
+        helpers: [
+          null,
+          "Word bank: important, significant, critical, fundamental, essential, vital",
+          s3EvidenceAndTechniquesHelper
+        ]
+      },
+      {
+        title: "Paragraph 5 — Conclusion",
+        hagll: [
+          "In conclusion, this issue is a vital life skill that can help people feel confident and make wise decisions.",
+          "For these reasons, we must treat this skill seriously and keep practising it in real-life situations.",
+          "We must act now by using this skill whenever we can, asking questions when we are unsure and supporting each other to improve."
+        ],
+        prompts: [
+          "Restate your opinion about being numerate (start with In conclusion…, For these reasons…, or This is why…)",
+          "Select your persuasive technique (e.g. evidence, emotive language, inclusive language)",
+          "Final call to action (what should the reader do or think?)"
+        ],
+        helpers: [
+          "Sentence starters: In conclusion…, For these reasons…, This is why…",
+          s3EvidenceAndTechniquesHelper,
+          "Examples: We must act now…, Together we can…, Let’s make the right choice…"
+        ]
+      }
+    ];
+
+    // HelperDisplay component for helper text
+    const HelperDisplay = ({ helper }) => {
+      if (!helper) return null;
+      if (typeof helper === "string") {
+        return <div className="helper">{helper}</div>;
+      }
+      if (helper.type === "group" && Array.isArray(helper.content)) {
+        return (
+          <div className="helper">
+            {helper.content.map((item, idx) => (
+              <div key={idx} style={{ marginBottom: "6px" }}>
+                <strong>{item.title}:</strong> {item.text}
+              </div>
+            ))}
+          </div>
+        );
+      }
+      return null;
+    };
+
+    const App = () => {
+      const [data, setData] = React.useState(
+        paragraphData.map(p => ({
+          ...p,
+          sentences: ["", "", ""],
+          feedback: [[], [], []]
+        }))
+      );
+
+      const updateSentence = (pIndex, sIndex, value) => {
+        setData(prev =>
+          prev.map((p, idx) => {
+            if (idx !== pIndex) return p;
+            const sentences = [...p.sentences];
+            sentences[sIndex] = value;
+            return { ...p, sentences };
+          })
+        );
+      };
+
+      const checkParagraph = (pIndex) => {
+        setData(prev =>
+          prev.map((p, idx) => {
+            if (idx !== pIndex) return p;
+            const feedback = p.sentences.map((s, sIdx) => grammarChecks(s, sIdx, pIndex));
+            return { ...p, feedback };
+          })
+        );
+      };
+
+      const readParagraph = (pIndex) => {
+        const paragraphText = data[pIndex].sentences.join(" ").trim();
+        if (!paragraphText) {
+          alert("Please write your sentences first so there is something to read aloud.");
+          return;
+        }
+        if (!window.speechSynthesis) {
+          alert("Sorry, your browser does not support reading aloud.");
+          return;
+        }
+        const utterance = new SpeechSynthesisUtterance(paragraphText);
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+      };
+
+      const copyParagraph = async (pIndex) => {
+        const paragraphText = data[pIndex].sentences.join(" ").trim();
+        if (!paragraphText) {
+          alert("There is no text to copy yet.");
+          return;
+        }
+        try {
+          await navigator.clipboard.writeText(paragraphText);
+          alert("Paragraph copied to clipboard!");
+        } catch (e) {
+          alert("Could not copy to clipboard, but here is your paragraph:\n\n" + paragraphText);
+        }
+      };
+
+      const coloursForS3 = ["#FEE2E2", "#E0F2FE", "#EDE9FE", "#FCE7F3", "#FFF7ED"];
+
+      return (
+        <div>
+          <h2>Persuasive Writing Helper: “It is important to be numerate in life.”</h2>
+          <p>
+            Use the prompts, helpers and colour-coded boxes to build each sentence. Each paragraph has three
+            sentences: <span style={{background:"#FFF9C4"}}>yellow for Sentence 1</span>,
+            <span style={{background:"#E6F4EA", marginLeft:4}}>green for Sentence 2</span>, and
+            <span style={{background:"#FEE2E2", marginLeft:4}}>a different colour for Sentence 3</span>.
+          </p>
+
+          {data.map((p, pIndex) => (
+            <div className="card" key={pIndex}>
+              <h3>{p.title}</h3>
+              <div className="two">
+                <div className="left">
+                  <h4>How a good one looks like</h4>
+                  <p className="hagll" style={{ background: "#FFF9C4" }}>
+                    {p.hagll[0]}
+                  </p>
+                  <p className="hagll" style={{ background: "#E6F4EA" }}>
+                    {p.hagll[1]}
+                  </p>
+                  <p
+                    className="hagll"
+                    style={{ background: coloursForS3[pIndex] }}
+                  >
+                    {p.hagll[2]}
+                  </p>
+                </div>
+
+                <div className="right">
+                  {p.prompts.map((prompt, sIndex) => (
+                    <div key={sIndex}>
+                      <label>
+                        Sentence {sIndex + 1}: {prompt}
+                      </label>
+                      <textarea
+                        spellCheck="true"
+                        className={
+                          sIndex === 0
+                            ? "s1"
+                            : sIndex === 1
+                            ? "s2"
+                            : "s3 p" + (pIndex + 1)
+                        }
+                        value={p.sentences[sIndex]}
+                        onChange={(e) =>
+                          updateSentence(pIndex, sIndex, e.target.value)
+                        }
+                      />
+                      <div className="fb">
+                        {p.feedback[sIndex].length === 0 ? (
+                          <em>No feedback yet. Press “Check spelling, punctuation, and capitalisation”.</em>
+                        ) : (
+                          p.feedback[sIndex].map((f, i) => <div key={i}>{f}</div>)
+                        )}
+                      </div>
+                      <HelperDisplay helper={p.helpers[sIndex]} />
+                    </div>
+                  ))}
+
+                  <div className="btns">
+                    <button
+                      className="check"
+                      type="button"
+                      onClick={() => checkParagraph(pIndex)}
+                    >
+                      Check spelling, punctuation, and capitalisation
+                    </button>
+                    <button
+                      className="read"
+                      type="button"
+                      onClick={() => readParagraph(pIndex)}
+                    >
+                      Read aloud
+                    </button>
+                    <button
+                      className="copy"
+                      type="button"
+                      onClick={() => copyParagraph(pIndex)}
+                    >
+                      Copy paragraph
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<App />);
+  </script>
+</body>
+</html>
